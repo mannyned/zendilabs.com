@@ -6,10 +6,43 @@
   <title>Zendi Labs LLC</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ─── Dark (default) ─── */
+    :root {
+      --bg: #0E1320;
+      --text: #F0F0F0;
+      --text-muted: #A0AEC0;
+      --text-secondary: #CBD5E0;
+      --heading-secondary: #E2E8F0;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #14F1C6;
+      --legal: #718096;
+      --legal-hover: #A0AEC0;
+      --toggle-bg: rgba(255, 255, 255, 0.08);
+      --toggle-hover: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ─── Light ─── */
+    html.light {
+      --bg: #F7F8FA;
+      --text: #1A202C;
+      --text-muted: #4A5568;
+      --text-secondary: #2D3748;
+      --heading-secondary: #1A202C;
+      --card-bg: #FFFFFF;
+      --card-border: #E2E8F0;
+      --accent: #0DAB8B;
+      --legal: #A0AEC0;
+      --legal-hover: #4A5568;
+      --toggle-bg: rgba(0, 0, 0, 0.06);
+      --toggle-hover: rgba(0, 0, 0, 0.1);
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0E1320;
-      color: #F0F0F0;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -17,10 +50,12 @@
       justify-content: center;
       padding: 24px;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     .container {
       max-width: 600px;
       text-align: center;
+      position: relative;
     }
     h1 {
       font-size: 36px;
@@ -29,12 +64,12 @@
     }
     .tagline {
       font-size: 18px;
-      color: #A0AEC0;
+      color: var(--text-muted);
       margin-bottom: 40px;
     }
     .about {
       font-size: 16px;
-      color: #CBD5E0;
+      color: var(--text-secondary);
       margin-bottom: 40px;
     }
     .apps {
@@ -43,14 +78,15 @@
     .apps h2 {
       font-size: 20px;
       margin-bottom: 16px;
-      color: #E2E8F0;
+      color: var(--heading-secondary);
     }
     .app-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 12px;
+      transition: background 0.3s, border-color 0.3s;
     }
     .app-card h3 {
       font-size: 18px;
@@ -58,13 +94,13 @@
     }
     .app-card p {
       font-size: 14px;
-      color: #A0AEC0;
+      color: var(--text-muted);
     }
     .contact {
       margin-bottom: 24px;
     }
     .contact a {
-      color: #14F1C6;
+      color: var(--accent);
       text-decoration: none;
     }
     .contact a:hover {
@@ -72,67 +108,49 @@
     }
     .legal {
       font-size: 13px;
-      color: #718096;
+      color: var(--legal);
     }
     .legal a {
-      color: #718096;
+      color: var(--legal);
       text-decoration: underline;
     }
     .legal a:hover {
-      color: #A0AEC0;
+      color: var(--legal-hover);
     }
     .divider {
       width: 40px;
       height: 2px;
-      background: #14F1C6;
+      background: var(--accent);
       margin: 0 auto 40px;
       border-radius: 1px;
+      transition: background 0.3s;
     }
 
-    /* ─── Light Mode ─── */
-    @media (prefers-color-scheme: light) {
-      body {
-        background: #F7F8FA;
-        color: #1A202C;
-      }
-      .tagline {
-        color: #4A5568;
-      }
-      .about {
-        color: #2D3748;
-      }
-      .apps h2 {
-        color: #1A202C;
-      }
-      .app-card {
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-      }
-      .app-card h3 {
-        color: #1A202C;
-      }
-      .app-card p {
-        color: #4A5568;
-      }
-      .contact a {
-        color: #0DAB8B;
-      }
-      .legal {
-        color: #A0AEC0;
-      }
-      .legal a {
-        color: #A0AEC0;
-      }
-      .legal a:hover {
-        color: #4A5568;
-      }
-      .divider {
-        background: #0DAB8B;
-      }
+    /* ─── Theme Toggle ─── */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--toggle-bg);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    .theme-toggle:hover {
+      background: var(--toggle-hover);
     }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+
   <div class="container">
     <h1>Zendi Labs</h1>
     <p class="tagline">Building intelligent mobile experiences</p>
@@ -166,5 +184,36 @@
 
     <p class="legal" style="margin-top: 24px;">&copy; 2026 Zendi Labs LLC. All rights reserved.</p>
   </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+
+    function setTheme(mode) {
+      if (mode === 'light') {
+        root.classList.add('light');
+        toggle.textContent = '\u2600\uFE0F';
+      } else {
+        root.classList.remove('light');
+        toggle.textContent = '\uD83C\uDF19';
+      }
+      localStorage.setItem('theme', mode);
+    }
+
+    // Init: check saved preference, then system preference
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      setTheme(saved);
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isLight = root.classList.contains('light');
+      setTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>
