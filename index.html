@@ -95,6 +95,21 @@
     .app-card p {
       font-size: 14px;
       color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .store-badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .store-badge {
+      height: 40px;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+    .store-badge:hover {
+      opacity: 0.8;
     }
     .contact {
       margin-bottom: 24px;
@@ -165,10 +180,23 @@
       <div class="app-card">
         <h3>iTineasy</h3>
         <p>AI-powered travel itinerary planner. Generate personalized trip plans, discover restaurants, and coordinate group travel.</p>
+        <div class="store-badges">
+          <a href="https://play.google.com/store/apps/details?id=app.itineasy.mobile" target="_blank" rel="noopener">
+            <img class="store-badge" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+          </a>
+          <a href="https://apps.apple.com/app/itineasy/id6744587077" target="_blank" rel="noopener">
+            <img class="store-badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+          </a>
+        </div>
       </div>
       <div class="app-card">
         <h3>PrayGate</h3>
         <p>Faith-driven app that blocks distractions and guides you into deeper prayer through personalized devotionals, fasting tools, and growth tracking.</p>
+        <div class="store-badges">
+          <a href="https://play.google.com/store/apps/details?id=com.praygate.app" target="_blank" rel="noopener">
+            <img class="store-badge" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+          </a>
+        </div>
       </div>
     </div>
 
