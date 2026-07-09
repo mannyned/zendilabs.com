@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HC PrefNote Support — Zendi Labs</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0E1320;
+      --surface: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --text: #F0F0F0;
+      --text-muted: #A0AEC0;
+      --text-secondary: #CBD5E0;
+      --accent: #14F1C6;
+      --accent-dark: #0DAB8B;
+      --toggle-bg: rgba(255,255,255,0.08);
+      --toggle-hover: rgba(255,255,255,0.15);
+      --legal: #718096;
+    }
+
+    html.light {
+      --bg: #F7F8FA;
+      --surface: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #1A202C;
+      --text-muted: #4A5568;
+      --text-secondary: #2D3748;
+      --accent: #0DAB8B;
+      --accent-dark: #0DAB8B;
+      --toggle-bg: rgba(0,0,0,0.06);
+      --toggle-hover: rgba(0,0,0,0.1);
+      --legal: #A0AEC0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--toggle-bg);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.3s;
+      z-index: 100;
+    }
+    .theme-toggle:hover { background: var(--toggle-hover); }
+
+    header {
+      text-align: center;
+      padding: 48px 20px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .back:hover { opacity: 0.8; }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      margin: 40px 0 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 10px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .contact-card a.btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #0E1320;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 12px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .contact-card a.btn:hover { opacity: 0.85; }
+
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 40px;
+      transition: background 0.3s;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+      color: var(--legal);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+
+  <header>
+    <a class="back" href="https://zendilabs.com">&#8592; Zendi Labs</a>
+    <h1>HC PREFNOTE</h1>
+    <p>Provider Preference Cards — Support</p>
+  </header>
+
+  <div class="container">
+
+    <p class="section-label">Frequently Asked Questions</p>
+
+    <div class="card">
+      <h3>What is HC PrefNote?</h3>
+      <p>HC PrefNote is a mobile app for healthcare professionals to build, search, and share provider preference cards across any clinical department — all stored locally on your device with no login required.</p>
+    </div>
+
+    <div class="card">
+      <h3>Is my data stored in the cloud?</h3>
+      <p>No. All preference cards are stored locally on your device. No data is sent to any server. Your library is private and accessible only on your device.</p>
+    </div>
+
+    <div class="card">
+      <h3>How do I back up my preference cards?</h3>
+      <p>Go to Settings → Backup → Export Backup (JSON). This saves a copy of all your cards as a JSON file you can store anywhere — Files app, iCloud Drive, email, etc. To restore, use Settings → Backup → Import Backup (JSON).</p>
+    </div>
+
+    <div class="card">
+      <h3>How do I share a card with a colleague?</h3>
+      <p>Open any preference card and tap the share icon in the action bar. You can share as a .hcpref file (via AirDrop, Messages, email, etc.) or display a QR code for a colleague to scan with their HC PrefNote app.</p>
+    </div>
+
+    <div class="card">
+      <h3>How do I restore my Pro subscription?</h3>
+      <p>Go to Settings → Subscription → Restore Purchase. Your subscription will be restored using your App Store or Google Play account. Make sure you are signed in with the same account used for the original purchase.</p>
+    </div>
+
+    <div class="card">
+      <h3>What does Pro include?</h3>
+      <p>HC PrefNote Pro unlocks advanced search across all fields, card duplication, PDF export for printing, and unlimited custom department templates. Preference cards themselves are unlimited on all plans.</p>
+    </div>
+
+    <div class="card">
+      <h3>Can I use this app for patient records?</h3>
+      <p>No. HC PrefNote is designed for provider preference notes only. Do not store patient names, MRNs, dates of birth, diagnoses, or any other protected health information in this app.</p>
+    </div>
+
+    <div class="card">
+      <h3>How do I delete all my data?</h3>
+      <p>Go to Settings → Data → Clear All Local Data. This permanently deletes all preference cards from your device. This action cannot be undone — export a backup first if you want to keep your data.</p>
+    </div>
+
+    <p class="section-label">Contact Support</p>
+
+    <div class="contact-card">
+      <p>Can't find the answer you're looking for? We're happy to help.</p>
+      <a class="btn" href="mailto:support@zendilabs.com">support@zendilabs.com</a>
+    </div>
+
+    <div class="notice">
+      HC PREFNOTE is intended for use as a personal preference card reference tool by healthcare professionals. It is not a medical device and is not intended to replace clinical judgment, institutional policy, or official preference card systems.
+    </div>
+
+  </div>
+
+  <footer>
+    <p>HC PrefNote &copy; 2025 Zendi Labs LLC &nbsp;&middot;&nbsp;
+      <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="https://zendilabs.com">zendilabs.com</a>
+    </p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    function setTheme(mode) {
+      if (mode === 'light') { root.classList.add('light'); toggle.textContent = '\u2600\uFE0F'; }
+      else { root.classList.remove('light'); toggle.textContent = '\uD83C\uDF19'; }
+      localStorage.setItem('theme', mode);
+    }
+    const saved = localStorage.getItem('theme');
+    if (saved) setTheme(saved);
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) setTheme('light');
+    else setTheme('dark');
+    toggle.addEventListener('click', () => {
+      setTheme(root.classList.contains('light') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

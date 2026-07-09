@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HC PrefNote Privacy Policy — Zendi Labs</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0E1320;
+      --surface: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --text: #F0F0F0;
+      --text-muted: #A0AEC0;
+      --text-secondary: #CBD5E0;
+      --accent: #14F1C6;
+      --toggle-bg: rgba(255,255,255,0.08);
+      --toggle-hover: rgba(255,255,255,0.15);
+      --legal: #718096;
+    }
+
+    html.light {
+      --bg: #F7F8FA;
+      --surface: #FFFFFF;
+      --border: #E2E8F0;
+      --text: #1A202C;
+      --text-muted: #4A5568;
+      --text-secondary: #2D3748;
+      --accent: #0DAB8B;
+      --toggle-bg: rgba(0,0,0,0.06);
+      --toggle-hover: rgba(0,0,0,0.1);
+      --legal: #A0AEC0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--toggle-bg);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.3s;
+      z-index: 100;
+    }
+    .theme-toggle:hover { background: var(--toggle-hover); }
+
+    header {
+      text-align: center;
+      padding: 48px 20px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .back:hover { opacity: 0.8; }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .updated {
+      font-size: 13px;
+      color: var(--legal);
+      margin-bottom: 32px;
+    }
+
+    .highlight {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      transition: background 0.3s;
+    }
+
+    h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent);
+      margin: 36px 0 12px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    ul {
+      margin: 6px 0 12px 20px;
+    }
+
+    ul li {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+      color: var(--legal);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+
+  <header>
+    <a class="back" href="index.html">&#8592; HC PrefNote Support</a>
+    <h1>HC PREFNOTE</h1>
+    <p>Privacy Policy</p>
+  </header>
+
+  <div class="container">
+
+    <p class="updated">Last updated: July 8, 2025</p>
+
+    <div class="highlight">
+      HC PrefNote is built with privacy as a core principle. Your preference cards live on your device. We do not collect, transmit, or sell your personal data.
+    </div>
+
+    <h2>1. Who We Are</h2>
+    <p>HC PrefNote is developed and published by Zendi Labs LLC. If you have any questions about this Privacy Policy, contact us at <a href="mailto:support@zendilabs.com">support@zendilabs.com</a>.</p>
+
+    <h2>2. Data We Do Not Collect</h2>
+    <p>HC PrefNote does not collect, store, or transmit:</p>
+    <ul>
+      <li>Personal identifying information</li>
+      <li>Patient data, medical records, or protected health information (PHI)</li>
+      <li>Device identifiers or analytics data</li>
+      <li>Location data</li>
+      <li>Usage statistics or behavioral data</li>
+    </ul>
+
+    <h2>3. Data Stored Locally on Your Device</h2>
+    <p>All preference cards, settings, and app data are stored exclusively on your device using on-device storage (SQLite and AsyncStorage). This data:</p>
+    <ul>
+      <li>Never leaves your device unless you explicitly share or export it</li>
+      <li>Is not accessible to Zendi Labs or any third party</li>
+      <li>Is permanently deleted when you use "Clear All Local Data" or uninstall the app</li>
+    </ul>
+
+    <h2>4. Subscriptions and Payments</h2>
+    <p>HC PrefNote offers an optional Pro subscription processed through the Apple App Store and Google Play Store. Subscription purchases are handled entirely by Apple and Google — we do not process or store payment information directly.</p>
+    <p>We use <strong>RevenueCat</strong> to manage subscription status verification. RevenueCat may collect:</p>
+    <ul>
+      <li>A non-identifiable app user ID</li>
+      <li>Purchase receipt data to verify your subscription</li>
+      <li>Device platform (iOS or Android)</li>
+    </ul>
+    <p>RevenueCat does not receive your preference card data or any clinical information. For details, see the <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a>.</p>
+
+    <h2>5. Photo Attachments</h2>
+    <p>HC PrefNote allows you to attach photos to preference cards from your device's photo library. These photos are stored locally on your device only and are never uploaded to any server.</p>
+    <p>We strongly recommend you do not attach photos containing patient faces, names, MRNs, labels, consent forms, or any protected health information.</p>
+
+    <h2>6. Camera Access</h2>
+    <p>HC PrefNote requests camera access solely to scan QR codes when importing a shared preference card from another HC PrefNote user. No photos or video are captured or stored during this process.</p>
+
+    <h2>7. Important Notice Regarding PHI</h2>
+    <div class="highlight">
+      HC PrefNote is designed for provider and surgeon preference notes only. It is not a HIPAA-compliant platform and must not be used to store patient names, dates of birth, medical record numbers, diagnoses, or any other protected health information. Users are solely responsible for ensuring appropriate use within their institution's policies.
+    </div>
+
+    <h2>8. Children's Privacy</h2>
+    <p>HC PrefNote is intended for use by healthcare professionals and is not directed at children under the age of 13. We do not knowingly collect any information from children.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>For privacy-related questions or requests, contact us at:<br>
+    <a href="mailto:support@zendilabs.com">support@zendilabs.com</a></p>
+
+  </div>
+
+  <footer>
+    <p>HC PrefNote &copy; 2025 Zendi Labs LLC &nbsp;&middot;&nbsp;
+      <a href="index.html">Support</a> &nbsp;&middot;&nbsp;
+      <a href="https://zendilabs.com">zendilabs.com</a>
+    </p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    function setTheme(mode) {
+      if (mode === 'light') { root.classList.add('light'); toggle.textContent = '\u2600\uFE0F'; }
+      else { root.classList.remove('light'); toggle.textContent = '\uD83C\uDF19'; }
+      localStorage.setItem('theme', mode);
+    }
+    const saved = localStorage.getItem('theme');
+    if (saved) setTheme(saved);
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) setTheme('light');
+    else setTheme('dark');
+    toggle.addEventListener('click', () => {
+      setTheme(root.classList.contains('light') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
