@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-a" x1="0" y1="0" x2="512" y2="512">
+      <stop offset="0%" stop-color="#1a1f3a"/>
+      <stop offset="60%" stop-color="#0d1025"/>
+      <stop offset="100%" stop-color="#151a35"/>
+    </linearGradient>
+    <linearGradient id="gold-a" x1="128" y1="96" x2="384" y2="416">
+      <stop offset="0%" stop-color="#c9a96e"/>
+      <stop offset="50%" stop-color="#e8d5a8"/>
+      <stop offset="100%" stop-color="#a88d55"/>
+    </linearGradient>
+    <linearGradient id="lock-body-a" x1="152" y1="220" x2="360" y2="380">
+      <stop offset="0%" stop-color="#1e2747"/>
+      <stop offset="100%" stop-color="#141a33"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="102" fill="url(#bg-a)"/>
+  
+  <!-- Outer glow ring -->
+  <circle cx="256" cy="230" r="180" stroke="url(#gold-a)" stroke-width="1.2" opacity="0.2"/>
+  
+  <!-- Lock body -->
+  <rect x="168" y="220" width="176" height="142" rx="30" fill="url(#lock-body-a)" stroke="url(#gold-a)" stroke-width="2.5"/>
+  
+  <!-- Lock shackle -->
+  <path d="M196 220V162C196 128.86 222.86 102 256 102C289.14 102 316 128.86 316 162V220" 
+        stroke="url(#gold-a)" stroke-width="6" stroke-linecap="round" fill="none"/>
+  
+  <!-- Cross keyhole -->
+  <line x1="256" y1="264" x2="256" y2="332" stroke="#c9a96e" stroke-width="6" stroke-linecap="round"/>
+  <line x1="234" y1="288" x2="278" y2="288" stroke="#c9a96e" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Subtle light rays -->
+  <line x1="256" y1="252" x2="256" y2="244" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+  <line x1="224" y1="288" x2="216" y2="288" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  <line x1="288" y1="288" x2="296" y2="288" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- PrayGate text -->
+  <text x="256" y="420" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-weight="normal" fill="url(#gold-a)" letter-spacing="4">PrayGate</text>
+  
+  <!-- Tagline -->
+  <text x="256" y="452" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="14" fill="#c9a96e" opacity="0.5" letter-spacing="4">UNLOCK THROUGH FAITH</text>
+
+  <!-- Decorative dots -->
+  <circle cx="256" cy="474" r="2.5" fill="#c9a96e" opacity="0.2"/>
+  <circle cx="242" cy="478" r="1.5" fill="#c9a96e" opacity="0.12"/>
+  <circle cx="270" cy="478" r="1.5" fill="#c9a96e" opacity="0.12"/>
+</svg>
