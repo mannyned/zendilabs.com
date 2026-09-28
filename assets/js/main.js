@@ -88,6 +88,18 @@
   }
 
   // ─── Contact form ───
+  // Storage pattern mirrors eversteadrecoveryliving.com's /api/contact route:
+  // honeypot + validation, then insert straight into a Supabase table (no email send).
+  // This site is static (GitHub Pages, no server), so the insert happens client-side
+  // using Supabase's public "publishable" key — that key is meant to be public;
+  // access is locked down entirely by the INSERT-only RLS policy on the
+  // zendilabs_contact_messages table (see supabase/contact_messages.sql).
+  // This intentionally reuses the eversteadrecoveryliving.com Supabase project
+  // (same publishable key as that site) to avoid a second paid organization —
+  // the zendilabs_ table prefix keeps it isolated from Everstead's own tables.
+  var SUPABASE_URL = 'https://pyyurqyxcvvlsmmamcjm.supabase.co';
+  var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_pQDLD_sTOCCuZ_uL4dxxAA_manxN5rw';
+
   var form = document.getElementById('contact-form');
   if (form) {
     var statusEl = document.getElementById('form-status');
@@ -156,8 +168,11 @@
         return;
       }
 
-      var endpoint = form.getAttribute('data-endpoint');
-      if (!endpoint || endpoint.indexOf('REPLACE_WITH') !== -1) {
+      var configured =
+        SUPABASE_URL.indexOf('REPLACE_WITH') === -1 &&
+        SUPABASE_PUBLISHABLE_KEY.indexOf('REPLACE_WITH') === -1;
+
+      if (!configured || typeof window.supabase === 'undefined') {
         setStatus(
           'Form delivery is not configured yet. Please email us directly at contact@zendilabs.com.',
           'error'
@@ -165,22 +180,46 @@
         return;
       }
 
+      // Lightweight client-side cooldown. Everstead's server-side route rate-limits
+      // by IP; a static site has no server to do that, so this is a soft deterrent,
+      // not equivalent protection — the RLS insert-only policy is the real guardrail.
+      var lastSubmit = Number(localStorage.getItem('zendi_contact_last_submit') || 0);
+      if (Date.now() - lastSubmit < 30000) {
+        setStatus('Please wait a moment before sending another message.', 'error');
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
       setStatus('', '');
 
-      fetch(endpoint, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
-      })
-        .then(function (response) {
-          if (response.ok) {
-            form.reset();
-            setStatus("Thanks — we'll be in touch within one business day.", 'success');
-          } else {
+      var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      var data = new FormData(form);
+      var row = {
+        name: (data.get('name') || '').toString().trim(),
+        email: (data.get('email') || '').toString().trim(),
+        company: (data.get('company') || '').toString().trim() || null,
+        phone: (data.get('phone') || '').toString().trim() || null,
+        project_type: (data.get('project_type') || '').toString().trim(),
+        description: (data.get('description') || '').toString().trim(),
+        timeline: (data.get('timeline') || '').toString().trim() || null,
+        budget: (data.get('budget') || '').toString().trim() || null,
+        contact_method: (data.get('contact_method') || '').toString().trim() || null,
+      };
+
+      Promise.resolve(client.from('zendilabs_contact_messages').insert([row]))
+        .then(function (result) {
+          if (result.error) {
             setStatus('Something went wrong sending your message. Please try again or email contact@zendilabs.com.', 'error');
+            return;
           }
+          try {
+            localStorage.setItem('zendi_contact_last_submit', String(Date.now()));
+          } catch (e) {
+            /* localStorage unavailable — cooldown just won't persist */
+          }
+          form.reset();
+          setStatus("Thanks — we'll be in touch within one business day.", 'success');
         })
         .catch(function () {
           setStatus('Something went wrong sending your message. Please try again or email contact@zendilabs.com.', 'error');
