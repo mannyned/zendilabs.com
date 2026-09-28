@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||(!t&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.classList.add('light');}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Zendi Labs</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="mark">Z</span>ZENDI LABS ADMIN</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="btn btn-secondary" id="sign-out-btn" type="button" style="display:none; margin-left:14px;">Sign Out</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ─── Login ─── -->
+  <section class="section on-ivory" id="login-view">
+    <div class="container" style="max-width: 420px;">
+      <div class="form-card">
+        <p class="eyebrow">Admin</p>
+        <h1 style="font-size: 26px; margin-top: 10px;">Sign In</h1>
+        <p style="margin-top: 8px; color: var(--text-on-light-muted); font-size: 14px;">Access is restricted to Zendi Labs admin accounts.</p>
+
+        <form id="login-form" style="margin-top: 24px;" novalidate>
+          <div class="field">
+            <label for="admin-email">Email</label>
+            <input type="email" id="admin-email" name="email" required autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="admin-password">Password</label>
+            <input type="password" id="admin-password" name="password" required autocomplete="current-password">
+          </div>
+          <div class="form-status is-error" id="login-error" style="display:none;"></div>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">Sign In</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Dashboard ─── -->
+  <section class="section on-ivory" id="dashboard-view" style="display:none;">
+    <div class="container">
+      <div class="section-header" style="max-width:none; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1 style="font-size: 28px; margin-top: 10px;">Contact Submissions</h1>
+        </div>
+        <button class="btn btn-outline-dark" id="refresh-btn" type="button">Refresh</button>
+      </div>
+
+      <p id="loading-state" style="color: var(--text-on-light-muted);">Loading…</p>
+      <p id="empty-state" style="display:none; color: var(--text-on-light-muted);">No submissions yet.</p>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="messages-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th>Phone</th>
+              <th>Project Type</th>
+              <th>Timeline</th>
+              <th>Budget</th>
+              <th>Contact Method</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="messages-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

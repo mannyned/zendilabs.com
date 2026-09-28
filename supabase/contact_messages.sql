@@ -35,3 +35,15 @@ create policy "Public can submit Zendi Labs contact messages"
   for insert
   to anon
   with check (true);
+
+-- Lets the admin page (admin.html) read submissions once the viewer has a real
+-- Supabase Auth session — this is what "authenticated" means here, not just
+-- possessing the public key. Public/anon visitors still cannot read this table;
+-- only a signed-in user can. Create the admin login in the Supabase dashboard
+-- under Authentication -> Users -> Add user (email + password), then sign in
+-- with those credentials on admin.html.
+create policy "Signed-in users can view Zendi Labs contact messages"
+  on public.zendilabs_contact_messages
+  for select
+  to authenticated
+  using (true);
